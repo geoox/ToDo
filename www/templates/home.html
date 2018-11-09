@@ -1,0 +1,43 @@
+<ion-content>
+    <div class="bar bar-header bar-light">
+        <h1 class="title">To do app </h1>
+    </div>
+
+
+
+    <div class="list" style="width:75%; margin:auto;padding-top:70px; ">
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Adding task...</span>
+            <input type="text" placeholder="Enter task" id="inputer">
+        </label>
+        <button class="button button-full button-dark" id="addButton" ng-click="addFunction(toDoItems,dates)">
+            Add task
+        </button>
+    </div>
+
+    <ul class="list" style="width:75%; margin:auto; padding-bottom:5%;">
+        <div class="list-group" id="listAppender">
+            <!-- <div class="item item-divider">{{date}}</div> -->
+            <li ng-repeat="todo in todos track by $index" class="item"><span>{{todo.name}}</span>
+                
+                <button ng-click="deleteFunction(toDoItems)" class="button button-light icon ion-ios-close" style="float:right;"></button>
+                <button ng-click="checkFunction(toDoItems)" ng-if="todo.checked===false" class="button button-light icon ion-ios-checkmark" style="float:right;"></button>
+                <button ng-click="checkFunction(toDoItems)" ng-if="todo.checked===true" class="button button-light icon ion-android-done-all" style="float:right;"></button>
+                <button ng-click="modal.show()" class="button button-light icon ion-ios-paper" style="float:right"></button>
+            </li>
+            
+        </div>
+    </ul>
+
+    <script id="modal.html" type="text/ng-template">
+        <ion-modal-view>
+          <ion-header-bar ng-repeat="todo in todosList track by $index">
+            <h1 class="title">{{todo.name}}</h1>
+          </ion-header-bar>
+          <ion-content ng-repeat="todo in todosList track by $index">
+            {{todo.checked}}
+          </ion-content>
+        </ion-modal-view>
+      </script>
+
+</ion-content>
